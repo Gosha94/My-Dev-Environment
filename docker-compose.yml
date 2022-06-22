@@ -1,0 +1,67 @@
+version: '3.9'
+
+services:
+
+  # postgres:
+  #   image: postgres:latest
+  #   container_name: postgres-local
+  #   hostname: postgres.local
+  #   environment:
+  #     POSTGRES_USER: "local"
+  #     POSTGRES_PASSWORD: "local"
+  #     PGDATA: "/var/lib/postgresql/data/pgdata"
+  #   volumes:
+  #     - ./postgres:/var/lib/postgresql/data
+  #   ports:
+  #     - 5432:5432
+  #   networks:
+  #     - dockerlocal
+
+  rabbitmq:
+    build:
+      context: ./rabbitmq
+    container_name: rabbitmq-local
+    hostname: rmq.local
+    restart: always
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - type: bind
+        source: ./rabbitmq/logs
+        target: /var/log/rabbitmq/
+      - type: bind
+        source: ./rabbitmq/data
+        target: /var/lib/rabbitmq/mnesia/
+    networks:
+      - dockerlocal
+  # pgadmin:
+  #   container_name: pgadmin-local
+  #   image: dpage/pgadmin4:5.7
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: "local@local.com"
+  #     PGADMIN_DEFAULT_PASSWORD: "local"
+  #     PGADMIN_CONFIG_SERVER_MODE: "False"
+  #   volumes:
+  #     - ./pgadmin:/var/lib/pgadmin
+  #   ports:
+  #     - "5050:80"
+  #   restart: unless-stopped
+  #   deploy:
+  #     resources:
+  #       limits:
+  #         cpus: '0.5'
+  #         memory: 1G
+  #   networks:
+  #     - dockerlocal
+
+networks:
+  dockerlocal:
+    name: dockerlocal
+    driver: bridge
+
+volumes:
+  postgresdata:
+    external: true
+  rabbitmqdata:
+    external: true
