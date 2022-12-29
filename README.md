@@ -1,12 +1,10 @@
-# My-Dev-Environment
-**This is shared project for local development containers, with ability to run separately/together**
-
-Contain containers:
+**_ Общий проект для контейнеров локальной разработки, с возможностью запуска по отдельности и совместно _**
 
 - RabbitMQ
 - Postgres
 - PgAdmin
 
-**Quick Start**
+** Quick Start **
 
+- cd .\docker-compose\
 - docker-compose -p "my-dev-local-env" up -d

@@ -1,10 +1,67 @@
 {
-	"vhosts": [
+	"rabbit_version": "3.8.9",
+	"rabbitmq_version": "3.8.9",
+	"product_name": "RabbitMQ",
+	"product_version": "3.8.9",
+	"users": [
 		{
-			"name": "/"
+			"name": "xo_admin",
+        	"password": "xo_admin",
+			"tags": "administrator"
 		},
+		{
+			"name": "super_rabbit",
+			"password": "super_rabbit",
+			"tags": "administrator"
+		},
+		{
+			"name": "smth_user",
+			"password": "smth_user",
+			"tags": "administrator"
+		}
+	],
+	"vhosts": [
 		{
 			"name": "xo_game"
 		}
-	]
+	],
+	"permissions": [
+		{
+			"user": "smth_user",
+			"vhost": "xo_game",
+			"configure": ".*",
+			"write": ".*",
+			"read": ".*"
+		},
+		{
+			"user": "xo_admin",
+			"vhost": "xo_game",
+			"configure": ".*",
+			"write": ".*",
+			"read": ".*"
+		},
+		{
+			"user": "super_rabbit",
+			"vhost": "xo_game",
+			"configure": ".*",
+			"write": ".*",
+			"read": ".*"
+		}
+	],
+	"topic_permissions": [],
+	"parameters": [],
+	"global_parameters": [
+		{
+			"name": "cluster_name",
+			"value": "xo-rabbit@123abc"
+		},
+		{
+			"name": "internal_cluster_id",
+			"value": "rabbitmq-cluster-id-someTest"
+		}
+	],
+	"policies": [],
+	"queues": [],
+	"exchanges": [],
+	"bindings": []
 }
