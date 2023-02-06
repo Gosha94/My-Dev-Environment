@@ -1,3 +1,5 @@
 
-rabbitmq/data/*
-rabbitmq/logs/*
+rabbitmq/data
+rabbitmq/logs
+
+postgres/pgdata
